@@ -29,10 +29,11 @@ const renderPictureList = function (data) {
   const fragment = new DocumentFragment();
   for (let i = 0; i < data.length; i++) {
     let picture = renderPicture(data[i]);
+    picture.id = i;
     fragment.append(picture);
   };
   let target = document.querySelector('.pictures');
   target.append(fragment);
 };
 
-export {renderPictureList};
+export { renderPictureList };
