@@ -113,7 +113,7 @@ const descPool = [
   const getRandomData = function (quant) {
     const ids = getUniqueIds(0, quant - 1, quant);
     return ids.map((id) => {
-      const url = `photos/${id}.jpg`;
+      const url = `photos/${getRandomInt(1, 25)}.jpg`;
 
       return {
         id,
