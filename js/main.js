@@ -1,6 +1,8 @@
 import { getRandomData } from "./data.js";
 import { renderPictureList } from "./render-minis.js";
 import { renderFullscreen } from "./render-fullscreen.js";
+import { renderUploadWindow } from "./upload-window-handler.js";
+import { closeUploadWindow } from "./upload-window-handler.js";
 
 const data = getRandomData(125);
 renderPictureList(data);
@@ -24,4 +26,15 @@ window.addEventListener("click", (evt) => {
       body.classList.remove('modal-open');
     }
   })
+});
+
+window.addEventListener('change', (evt) => {
+  if (evt.target.id === 'upload-file') {
+    renderUploadWindow();
+    window.addEventListener('click', (evt) => {
+      if (evt.target.id === 'upload-cancel' || evt.target.classList.contains('img-upload__overlay')) {
+        closeUploadWindow();
+      }
+    })
+  }
 });
