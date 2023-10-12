@@ -39,6 +39,18 @@ let getUniqueIds = function (min, max, items) {
   }, []);
 };
 
+const valueController = function (target, step, min, max) {
+  const changeBy = step;
+  console.log(changeBy);
+  let targetValue = +target;
+  console.log(targetValue);
+  targetValue += changeBy;
+  console.log(targetValue);
+  targetValue = Math.max(min, Math.min(targetValue, max));
+  return targetValue;
+}
+
+export { valueController };
 export { getRandomInt };
 export { getUniqueIds };
 export { isValidStringLength };
