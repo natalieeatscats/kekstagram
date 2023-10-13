@@ -50,6 +50,11 @@ scalePlus.addEventListener('click', (evt) => {
   console.log(scaleValue.value);
   scaleValue.value = valueController(scaleValue.value, step, 25, 100);
   console.log(scaleValue.value);
+  let setScale = scaleValue.value / 100;
+  const imagePreview = document.querySelector('#img-preview');
+  console.log(imagePreview);
+  let styleValue = ('transform: scale(' + setScale + ')');
+  imagePreview.setAttribute('style', styleValue);
 
 })
 
@@ -59,6 +64,11 @@ scaleMinus.addEventListener('click', (evt) => {
   console.log(scaleValue.value);
   scaleValue.value = valueController(scaleValue.value, -step, 25, 100);
   console.log(scaleValue.value);
+  let setScale = scaleValue.value / 100;
+  const imagePreview = document.querySelector('#img-preview');
+  console.log(imagePreview);
+  let styleValue = ('transform: scale(' + setScale + ')');
+  imagePreview.setAttribute('style', styleValue);
 
 })
 
