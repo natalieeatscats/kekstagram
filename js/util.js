@@ -16,8 +16,8 @@ let getRandomInt = function (rangeStart, rangeEnd) {
   return Math.floor(Math.random() * (rangeEnd - rangeStart + 1) + rangeStart);
 };
 
-let isValidStringLength = function (stringToCheck, stringLengthMax) {
-  if (stringToCheck.length <= stringLengthMax) {
+let isValidStringLength = function (stringToCheck, min, max) {
+  if (stringToCheck.length <= max && stringToCheck.length >= min) {
     return true;
   }
   return false;

@@ -6,6 +6,7 @@ import { renderUploadWindow } from "./upload-window-handler.js";
 import { closeUploadWindow } from "./upload-window-handler.js";
 import { valueController } from "./util.js";
 import { applyFilter } from "./apply-filter.js";
+import { isValidHashtagField } from "./validate-hashtags.js";
 
 
 console.log(noUiSlider);
@@ -203,3 +204,11 @@ window.addEventListener('click', (evt) => {
   }
 })
 
+const uploadHashtags = document.querySelector('#hashtags');
+
+uploadHashtags.addEventListener('input', (evt) => {
+  let hashtags = uploadHashtags.value;
+  console.log(isValidHashtagField(hashtags));
+  uploadHashtags.setCustomValidity(isValidHashtagField(hashtags));
+  uploadHashtags.reportValidity();
+})
