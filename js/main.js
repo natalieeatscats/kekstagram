@@ -7,17 +7,31 @@ import { closeUploadWindow } from "./upload-window-handler.js";
 import { valueController } from "./util.js";
 import { applyFilter } from "./apply-filter.js";
 import { isValidHashtagField } from "./validate-hashtags.js";
+import { createFetch } from "./api.js";
 
 
 console.log(noUiSlider);
+let picturesData = getRandomData(15);
 
-const data = getRandomData(125);
-renderPictureList(data);
+// const data = getRandomData(125);
+const fetchData = createFetch(
+  (data) => {
+    console.log(data);
+    picturesData = data;
+    renderPictureList(picturesData);
+  },
+  (err) => {
+    console.log(err);
+  },
+);
+fetchData();
+console.log(picturesData);
+
 
 window.addEventListener('click', (evt) => {
   // console.log(evt.target.parentElement);
   if (evt.target.parentElement.className === 'picture') {
-    renderFullscreen(data[evt.target.parentElement.id]);
+    renderFullscreen(picturesData[evt.target.parentElement.id]);
   };
   window.addEventListener('click', (evt) => {
     // console.log(evt.target);
@@ -209,6 +223,11 @@ const uploadHashtags = document.querySelector('#hashtags');
 uploadHashtags.addEventListener('input', (evt) => {
   let hashtags = uploadHashtags.value;
   console.log(isValidHashtagField(hashtags));
+  if (isValidHashtagField(hashtags) != '') {
+    uploadHashtags.setAttribute('style', 'border: 2px red solid');
+  } else {
+    uploadHashtags.setAttribute('style', '');
+  };
   uploadHashtags.setCustomValidity(isValidHashtagField(hashtags));
   uploadHashtags.reportValidity();
 })
