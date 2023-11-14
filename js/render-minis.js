@@ -26,6 +26,7 @@ const renderPicture = function (picture) {
 };
 
 const renderPictureList = function (data) {
+  console.log(data)
   const fragment = new DocumentFragment();
   for (let i = 0; i < data.length; i++) {
     let picture = renderPicture(data[i]);
