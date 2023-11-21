@@ -216,7 +216,7 @@ uploadHashtags.addEventListener('input', () => {
   uploadHashtags.reportValidity();
 });
 
-const uploadForm = document.querySelector('#img-upload__form');
+const uploadForm = document.querySelector('#upload-select-image');
 const uploadButton = document.querySelector('#upload-submit');
 const successMessage = document.querySelector('#success');
 const errorMessage = document.querySelector('#error');
@@ -224,16 +224,33 @@ const errorMessage = document.querySelector('#error');
 const onSuccess = () => {
   uploadForm.reset();
   closeUploadWindow();
-  renderMessage(successMessage, 3000);
+  renderMessage(successMessage, 2000);
 };
 
 const onError = () => {
-  renderMessage(errorMessage, 3000);
+  uploadForm.reset();
+  closeUploadWindow();
+  renderMessage(errorMessage, 2000);
 }
 
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const formData = new FormData(uploadForm)
-  console.log(uploadForm)
-  createFetch(onSuccess(), onError(), 'POST', new FormData(uploadForm));
+  let formData = new FormData(uploadForm)
+  switch (formData.get('effect')) {
+    case 'grayscale':
+      formData.set('effect', 'chrome');
+      break;
+    case 'sepia':
+      break;
+    case 'invert':
+      formData.set('effect', 'marvin');
+      break;
+    case 'blur':
+      formData.set('effect', 'phobos');
+      break;
+    case 'brightness':
+      formData.set('effect', 'heat');
+  };
+  console.log(formData);
+  createFetch(onSuccess, onError, 'POST', formData);
 });

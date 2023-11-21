@@ -4,7 +4,7 @@ const DEFAULT_VALUES = getRandomData(15);
 
 const Urls = {
   GET: 'https://23.javascript.pages.academy/kekstagram/data',
-  POST: 'https://23.javascript.pages.academy/kekstagram',
+  POST: 'https://23.javascript.pages.academy/kekstagram/data',
 };
 const createFetch = async (onSuccess, onError, method = 'GET', data) => {
   console.log(data)

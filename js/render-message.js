@@ -1,11 +1,13 @@
 const renderMessage = (template, t) => {
-  const message = template.cloneNode(true);
+  const message = template.content.cloneNode(true);
   const fragment = new DocumentFragment();
   const target = document.querySelector('#main');
   fragment.append(message);
   target.append(fragment);
-  setTimeout(t);
-  target.removeChild(target.lastChild);
+  setTimeout(() => {
+    target.removeChild(document.querySelector('#upload-message'));
+  }, (t));
+
 };
 
 export { renderMessage };
